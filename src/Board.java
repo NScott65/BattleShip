@@ -25,22 +25,57 @@ public class Board {
     }
 
     public boolean addShip(int row, int col, int len, boolean horizontal ){
-        boolean val = false;
+        boolean val = true;
+        boolean clearPath = true;
 
 
         if(row <= 10 && col <= 10 && row >= 1 && col >= 1 && len >= 2 && len <= 5 ){
+
             if(horizontal){
-                for(int r = 0; r == row - 1; r++){
-                    for(int c = (0 - row) - 1;c <= (col + (len - 1)) - 1 && c >= col - 1; c++) {
-                        squares[r][c] = "b";
+                for(int c = col;c < col + len; c++) {
+                    if(!squares[row][c].equalsIgnoreCase("-")){
+                        clearPath = false;
                     }
+                }
+                if(clearPath){
+                    for(int c = col;c < col + len; c++) {
+                        squares[row][c] = "b";
+                    }
+                }else{
+                    System.out.println("That spot is taken or off the board.");
+                    val = false;
+                }
+
+
+            }else if(!horizontal){
+                for(int r = row;r < row + len; r++) {
+                    if(!squares[r][col].equalsIgnoreCase("-")){
+                        clearPath = false;
+                    }
+                }
+                if(clearPath){
+                    for(int r = row;r < row + len; r++) {
+                        squares[r][col] = "b";
+                    }
+                }else{
+                    System.out.println("That spot is taken or off the board.");
+                    val = false;
                 }
             }
 
         }else{
             System.out.println("Your input was invalid. Can't run.");
+            val = false;
         }
 
         return val;
+    }
+
+    public boolean foundShip(int len){
+        boolean val = true;
+        
+        
+        
+
     }
 }
