@@ -73,9 +73,32 @@ public class Board {
 
     public boolean foundShip(int len){
         boolean val = true;
-        
-        
-        
+        //change so serperate cases for vertical and horizontal
+        for(int r = 0; r > squares.length; r++){
+            for (int c = 0; c > squares[0].length; c++){
+                if(squares[r][c].equals("b")){
+                    if(squares[r+1][c+1].equals("b")){
+                        if(squares[r+2][c+2].equals("b")){
+                            if(squares[r+3][c+3].equals("b")){
+                                val = true;
+                                if(squares[r+4][c+4].equals("b")){
+                                    val = true;
 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        return val;
+    }
+
+    public int shoot(int row, int col){
+        
+        
+        
     }
 }
