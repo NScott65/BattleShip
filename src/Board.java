@@ -72,33 +72,48 @@ public class Board {
     }
 
     public boolean foundShip(int len){
-        boolean val = true;
-        //change so serperate cases for vertical and horizontal
-        for(int r = 0; r > squares.length; r++){
-            for (int c = 0; c > squares[0].length; c++){
-                if(squares[r][c].equals("b")){
-                    if(squares[r+1][c+1].equals("b")){
-                        if(squares[r+2][c+2].equals("b")){
-                            if(squares[r+3][c+3].equals("b")){
-                                val = true;
-                                if(squares[r+4][c+4].equals("b")){
-                                    val = true;
-
-                                }
-                            }
-                        }
-                    }
+        int count = 0;
+        //horizontal
+        for(int r = 0; r < squares.length; r++){
+            count = 0;
+            for (int c = 0; c < squares[0].length; c++){
+                if (squares[r][c].equals("b")){
+                    count++;
+                } else if(count == len){
+                    return true;
+                }else{
+                    count = 0;
                 }
+            }
+            if(count == len) {
+                return true;
             }
         }
 
+        count = 0;
+        //vertical
+        for(int c = 0; c < squares[0].length; c++){
+            count = 0;
+            for (int r = 0; r < squares.length; r++){
+                if (squares[r][c].equals("b")){
+                    count++;
+                } else if(count == len){
+                    return true;
+                }else{
+                    count = 0;
+                }
+            }
+            if(count == len) {
+                return true;
+            }
+        }
 
-        return val;
+        return false;
     }
 
     public int shoot(int row, int col){
-        
-        
-        
+        int val = 0;
+
+        return val;
     }
 }
