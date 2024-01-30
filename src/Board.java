@@ -32,34 +32,37 @@ public class Board {
         if(row <= 10 && col <= 10 && row >= 1 && col >= 1 && len >= 2 && len <= 5 ){
 
             if(horizontal){
-                for(int c = col;c < col + len; c++) {
-                    if(!squares[row][c].equalsIgnoreCase("-")){
-                        clearPath = false;
+                if(col + len <= 9) {
+                    for (int c = col; c < col + len; c++) {
+                        if (!squares[row][c].equalsIgnoreCase("-")) {
+                            clearPath = false;
+                        }
+                    }
+                    if (clearPath) {
+                        for (int c = col; c < col + len; c++) {
+                            squares[row][c] = "b";
+                        }
+                    } else {
+                        System.out.println("That spot is taken or off the board.");
+                        val = false;
                     }
                 }
-                if(clearPath){
-                    for(int c = col;c < col + len; c++) {
-                        squares[row][c] = "b";
-                    }
-                }else{
-                    System.out.println("That spot is taken or off the board.");
-                    val = false;
-                }
-
 
             }else if(!horizontal){
-                for(int r = row;r < row + len; r++) {
-                    if(!squares[r][col].equalsIgnoreCase("-")){
-                        clearPath = false;
+                if(row + len <= 9) {
+                    for (int r = row; r < row + len; r++) {
+                        if (!squares[r][col].equalsIgnoreCase("-")) {
+                            clearPath = false;
+                        }
                     }
-                }
-                if(clearPath){
-                    for(int r = row;r < row + len; r++) {
-                        squares[r][col] = "b";
+                    if (clearPath) {
+                        for (int r = row; r < row + len; r++) {
+                            squares[r][col] = "b";
+                        }
+                    } else {
+                        System.out.println("That spot is taken or off the board.");
+                        val = false;
                     }
-                }else{
-                    System.out.println("That spot is taken or off the board.");
-                    val = false;
                 }
             }
 
@@ -115,10 +118,10 @@ public class Board {
         int val = -1;
 
         if (squares[row][col].equals("b")) {
-            squares[row][col].equals("x");
+            squares[row][col] = "x";
             return 1;
         }else if(squares[row][col].equals("-")){
-            squares[row][col].equals("m");
+            squares[row][col] = "m";
             return 0;
         }else if(squares[row][col].equals("m") || squares[row][col].equals("x")){
             return 2;
