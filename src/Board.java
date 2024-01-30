@@ -112,7 +112,33 @@ public class Board {
     }
 
     public int shoot(int row, int col){
-        int val = 0;
+        int val = -1;
+
+        if (squares[row][col].equals("b")) {
+            squares[row][col].equals("x");
+            return 1;
+        }else if(squares[row][col].equals("-")){
+            squares[row][col].equals("m");
+            return 0;
+        }else if(squares[row][col].equals("m") || squares[row][col].equals("x")){
+            return 2;
+        }
+
+        return val;
+    }
+
+    public boolean gameOver(){
+        boolean val = false;
+
+        for(int r = 0; r < squares.length; r++){
+            //Inner for loop accesses each column in the current row
+            for(int c = 0; c < squares[0].length; c++){
+                if(!squares[r][c].equals("b")){
+                    return true;
+                }
+            }
+
+        }
 
         return val;
     }
